@@ -1,0 +1,24 @@
+.main-slider {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.main-slider__content {
+  width: 100%;
+  height: 100%;
+}
+
+.main-slider__button {
+  position: absolute;
+  left: -40px;
+
+  &--next {
+    left: unset;
+    right: -40px;
+    transform: rotate(180deg);
+  }
+}

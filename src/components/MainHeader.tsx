@@ -5,7 +5,6 @@ import "../styles/mainHeader.scss";
 
 const MainHeader: React.FC = () => {
   const [navElements, setNavElements] = useState<INavElement[]>([
-    { title: "main", link: "main" },
     { title: "characters", link: "characters" },
     { title: "landscapes", link: "landscapes" },
     { title: "about me", link: "about" },

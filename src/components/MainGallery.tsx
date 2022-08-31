@@ -1,37 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { IGalleryImg } from "../types/types";
 import "../styles/mainGallery.scss";
 
 interface MainGalleryProps {
-  showImg: (value: string) => void;
+  images: IGalleryImg[];
+  showImg: (value: IGalleryImg) => void;
 }
 
-const MainGallery: React.FC<MainGalleryProps> = ({ showImg }) => {
-  const [images, setImages] = useState<IGalleryImg[]>([
-    { title: "Horse", path: "./assets/images/content/main-content-1.jpg" },
-    { title: "Moon", path: "./assets/images/content/main-content-2.jpg" },
-    { title: "Far Cry", path: "./assets/images/content/main-content-3.jpg" },
-    { title: "Flat", path: "./assets/images/content/main-content-4.jpg" },
-    { title: "Lady", path: "./assets/images/content/main-content-5.jpg" },
-    {
-      title: "Traffic light",
-      path: "./assets/images/content/main-content-6.jpg",
-    },
-  ]);
-
+const MainGallery: React.FC<MainGalleryProps> = ({ images, showImg }) => {
   return (
     <section className='main-gallery'>
       <ul className='main-gallery__list'>
         {images.length &&
-          images.map(({ title, path }) => {
+          images.map((image) => {
             return (
               <li
-                onClick={() => showImg(path)}
-                key={title}
+                onClick={() => showImg(image)}
+                key={image.title}
                 className='main-gallery__item'
               >
                 <picture className='main-gallery__picture'>
-                  <img className='main-gallery__image' src={path} alt={title} />
+                  <img
+                    className='main-gallery__image'
+                    src={image.path}
+                    alt={image.title}
+                  />
                 </picture>
               </li>
             );

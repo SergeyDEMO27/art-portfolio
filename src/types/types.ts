@@ -4,6 +4,7 @@ export interface INavElement {
 }
 
 export interface IGalleryImg {
+  id: string;
   title: string;
   path: string;
 }

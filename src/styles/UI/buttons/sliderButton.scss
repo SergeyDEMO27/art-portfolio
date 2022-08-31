@@ -1,0 +1,25 @@
+.slider-button {
+  position: relative;
+  width: 0;
+  height: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &::after {
+    @include default-transition;
+    @include center-element;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-right: 40px solid $color-white;
+  }
+
+  &:hover {
+    &::after {
+      border-right-color: #d2042d;
+    }
+  }
+}
