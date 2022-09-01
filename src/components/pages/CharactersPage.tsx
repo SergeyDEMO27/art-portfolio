@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { useSortedSearchedImages } from "../../hooks/useImages";
 import { CSSTransition } from "react-transition-group";
 import MainHeader from "../MainHeader";
 import MainFooter from "../MainFooter";
 import MainGallery from "../MainGallery";
+import MainFilter from "../MainFilter";
 import FullImg from "../FullImg";
 import MainSlider from "../UI/MainSlider";
 import MainModal from "../UI/MainModal";
-import { IGalleryImg } from "../../types/types";
+import { IGalleryImg, IFilter } from "../../types/types";
 import "../../styles/charactersPage.scss";
 
 const CharactersPage: React.FC = () => {
@@ -84,27 +86,25 @@ const CharactersPage: React.FC = () => {
       type: "landscape",
     },
   ]);
+  const [filter, setFilter] = useState<IFilter>({
+    selectedOpt: "",
+    searchVal: "",
+  });
   const [isImgShown, setIsImgShown] = useState<boolean>(false);
   const [activeImgIndex, setActiveImgIndex] = useState<number>(0);
 
+  const filteredSearchedImages = useSortedSearchedImages(
+    images,
+    filter.selectedOpt,
+    filter.searchVal
+  );
+
   const showImg = (image: IGalleryImg): void => {
-    const newActiveIndex = images.findIndex(
+    const newActiveIndex = filteredSearchedImages.findIndex(
       (element) => element.id === image.id
     );
     setActiveImgIndex(newActiveIndex);
     setIsImgShown(true);
-  };
-
-  const showPrevImg = () => {
-    const newActiveIndex =
-      activeImgIndex - 1 < 0 ? images.length - 1 : activeImgIndex - 1;
-    setActiveImgIndex(newActiveIndex);
-  };
-
-  const showNextImg = () => {
-    const newActiveIndex =
-      activeImgIndex + 1 > images.length - 1 ? 0 : activeImgIndex + 1;
-    setActiveImgIndex(newActiveIndex);
   };
 
   const hideImg = (e: React.MouseEvent<HTMLDivElement>): void => {
@@ -115,14 +115,31 @@ const CharactersPage: React.FC = () => {
     <div className='characters-page'>
       <MainHeader />
       <main className='characters-page__main'>
-        <MainGallery images={images} showImg={showImg} isFilter={true} />
+        <div className='characters-page__wrapper'>
+          <MainFilter filter={filter} setFilter={setFilter} />
+          {filteredSearchedImages.length ? (
+            <MainGallery
+              images={filteredSearchedImages}
+              showImg={showImg}
+              isFilter={true}
+            />
+          ) : (
+            <h2 style={{ color: "red" }}>Nothing was found by your request</h2>
+          )}
+        </div>
       </main>
       <MainFooter />
 
       <CSSTransition in={isImgShown} timeout={200} classNames='alert'>
         <MainModal isActive={isImgShown} hideImg={hideImg}>
-          <MainSlider showPrevImg={showPrevImg} showNextImg={showNextImg}>
-            <FullImg activeImg={images[activeImgIndex]} />
+          <MainSlider
+            slides={filteredSearchedImages}
+            activeIndx={activeImgIndex}
+            setActiveIndx={setActiveImgIndex}
+          >
+            {filteredSearchedImages.length && (
+              <FullImg activeImg={filteredSearchedImages[activeImgIndex]} />
+            )}
           </MainSlider>
         </MainModal>
       </CSSTransition>

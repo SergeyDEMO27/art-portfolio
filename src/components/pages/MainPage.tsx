@@ -12,34 +12,40 @@ import "../../styles/mainPage.scss";
 const MainPage: React.FC = () => {
   const [images, setImages] = useState<IGalleryImg[]>([
     {
-      id: "Horse1",
+      id: "horse1",
       title: "Horse",
       path: "./assets/images/content/main-content-1.jpg",
+      type: "landscape",
     },
     {
-      id: "Moon1",
+      id: "moon1",
       title: "Moon",
       path: "./assets/images/content/main-content-2.jpg",
+      type: "character",
     },
     {
-      id: "FarCry1",
+      id: "farCry1",
       title: "Far Cry",
       path: "./assets/images/content/main-content-3.jpg",
+      type: "landscape",
     },
     {
-      id: "Flat1",
+      id: "flat1",
       title: "Flat",
       path: "./assets/images/content/main-content-4.jpg",
+      type: "landscape",
     },
     {
-      id: "Lady1",
+      id: "lady1",
       title: "Lady",
       path: "./assets/images/content/main-content-5.jpg",
+      type: "character",
     },
     {
-      id: "TrafficLight1",
+      id: "trafficLight1",
       title: "Traffic light",
       path: "./assets/images/content/main-content-6.jpg",
+      type: "landscape",
     },
   ]);
   const [isImgShown, setIsImgShown] = useState<boolean>(false);
@@ -51,18 +57,6 @@ const MainPage: React.FC = () => {
     );
     setActiveImgIndex(newActiveIndex);
     setIsImgShown(true);
-  };
-
-  const showPrevImg = () => {
-    const newActiveIndex =
-      activeImgIndex - 1 < 0 ? images.length - 1 : activeImgIndex - 1;
-    setActiveImgIndex(newActiveIndex);
-  };
-
-  const showNextImg = () => {
-    const newActiveIndex =
-      activeImgIndex + 1 > images.length - 1 ? 0 : activeImgIndex + 1;
-    setActiveImgIndex(newActiveIndex);
   };
 
   const hideImg = (e: React.MouseEvent<HTMLDivElement>): void => {
@@ -79,7 +73,11 @@ const MainPage: React.FC = () => {
 
       <CSSTransition in={isImgShown} timeout={200} classNames='alert'>
         <MainModal isActive={isImgShown} hideImg={hideImg}>
-          <MainSlider showPrevImg={showPrevImg} showNextImg={showNextImg}>
+          <MainSlider
+            slides={images}
+            activeIndx={activeImgIndex}
+            setActiveIndx={setActiveImgIndex}
+          >
             <FullImg activeImg={images[activeImgIndex]} />
           </MainSlider>
         </MainModal>

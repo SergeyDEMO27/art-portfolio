@@ -9,6 +9,7 @@
 
 .characters-page__main {
   display: flex;
+  justify-content: center;
   align-items: center;
   flex: 1 1 auto;
   text-align: center;
@@ -16,4 +17,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.characters-page__wrapper {
+  display: flex;
+  flex-direction: column;
 }
