@@ -9,7 +9,7 @@
 .main-gallery__list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 30px;
+  gap: 35px;
   justify-content: space-between;
   margin: 0;
   padding: 0;
@@ -39,4 +39,10 @@
   height: 100%;
   object-fit: cover;
   transition: 0.4s ease-in-out;
+}
+
+.main-gallery__item-title {
+  margin-top: 5px;
+  color: $color-white;
+  text-transform: uppercase;
 }

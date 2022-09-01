@@ -1,0 +1,19 @@
+.characters-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  background-color: lavenderblush;
+}
+
+.characters-page__main {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  text-align: center;
+  background-image: url("../assets/images/bg/bg-main.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

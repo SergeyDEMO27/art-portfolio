@@ -5,9 +5,14 @@ import "../styles/mainGallery.scss";
 interface MainGalleryProps {
   images: IGalleryImg[];
   showImg: (value: IGalleryImg) => void;
+  isFilter?: boolean;
 }
 
-const MainGallery: React.FC<MainGalleryProps> = ({ images, showImg }) => {
+const MainGallery: React.FC<MainGalleryProps> = ({
+  images,
+  showImg,
+  isFilter = false,
+}) => {
   return (
     <section className='main-gallery'>
       <ul className='main-gallery__list'>
@@ -26,6 +31,9 @@ const MainGallery: React.FC<MainGalleryProps> = ({ images, showImg }) => {
                     alt={image.title}
                   />
                 </picture>
+                {isFilter && (
+                  <div className='main-gallery__item-title'>{image.title}</div>
+                )}
               </li>
             );
           })}
