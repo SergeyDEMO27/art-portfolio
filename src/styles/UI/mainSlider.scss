@@ -13,10 +13,11 @@
 }
 
 .main-slider__button {
-  position: absolute;
+  @include center-element;
   left: -40px;
 
   &--next {
+    top: calc(50% + 3px);
     left: unset;
     right: -40px;
     transform: rotate(180deg);

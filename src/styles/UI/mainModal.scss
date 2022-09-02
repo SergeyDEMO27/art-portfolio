@@ -28,3 +28,25 @@
   width: 30px;
   height: 30px;
 }
+
+.modal-transition-enter {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.modal-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.modal-transition-exit {
+  opacity: 1;
+}
+
+.modal-transition-exit-active {
+  opacity: 0;
+  transform: scale(0.5);
+  transform: translateX(0);
+  transition: opacity 200ms, transform 200ms;
+}

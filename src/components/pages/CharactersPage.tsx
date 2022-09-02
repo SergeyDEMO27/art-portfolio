@@ -18,72 +18,84 @@ const CharactersPage: React.FC = () => {
       title: "Horse",
       path: "./assets/images/content/main-content-1.jpg",
       type: "landscape",
+      price: 1000,
     },
     {
       id: "moon1",
       title: "Moon",
       path: "./assets/images/content/main-content-2.jpg",
       type: "character",
+      price: 1200,
     },
     {
       id: "farCry1",
       title: "Far Cry",
       path: "./assets/images/content/main-content-3.jpg",
       type: "landscape",
+      price: 2000,
     },
     {
       id: "flat1",
       title: "Flat",
       path: "./assets/images/content/main-content-4.jpg",
       type: "landscape",
+      price: 1500,
     },
     {
       id: "lady1",
       title: "Lady",
       path: "./assets/images/content/main-content-5.jpg",
       type: "character",
+      price: 2500,
     },
     {
       id: "trafficLight1",
       title: "Traffic light",
       path: "./assets/images/content/main-content-6.jpg",
       type: "landscape",
+      price: 3000,
     },
     {
       id: "cart1",
       title: "Cart",
       path: "./assets/images/content/main-content-7.jpg",
       type: "landscape",
+      price: 3500,
     },
     {
       id: "winterHouses1",
       title: "Winter Houses",
       path: "./assets/images/content/main-content-8.jpg",
       type: "landscape",
+      price: 4000,
     },
     {
       id: "persona1",
       title: "Persona 5",
       path: "./assets/images/content/main-content-9.jpg",
       type: "character",
+      price: 2200,
     },
     {
       id: "tiger1",
       title: "Tiger",
       path: "./assets/images/content/main-content-10.jpg",
       type: "character",
+      price: 2900,
     },
     {
       id: "matthewMcConaughey1",
       title: "Matthew McConaughey",
       path: "./assets/images/content/main-content-11.jpg",
       type: "character",
+      price: 3100,
     },
     {
       id: "horses1",
       title: "Horses",
       path: "./assets/images/content/main-content-12.jpg",
       type: "landscape",
+      price: 1700,
     },
   ]);
   const [filter, setFilter] = useState<IFilter>({
@@ -130,19 +142,17 @@ const CharactersPage: React.FC = () => {
       </main>
       <MainFooter />
 
-      <CSSTransition in={isImgShown} timeout={200} classNames='alert'>
-        <MainModal isActive={isImgShown} hideImg={hideImg}>
-          <MainSlider
-            slides={filteredSearchedImages}
-            activeIndx={activeImgIndex}
-            setActiveIndx={setActiveImgIndex}
-          >
-            {filteredSearchedImages.length && (
-              <FullImg activeImg={filteredSearchedImages[activeImgIndex]} />
-            )}
-          </MainSlider>
-        </MainModal>
-      </CSSTransition>
+      <MainModal isActive={isImgShown} hideImg={hideImg}>
+        <MainSlider
+          slides={filteredSearchedImages}
+          activeIndx={activeImgIndex}
+          setActiveIndx={setActiveImgIndex}
+        >
+          {isImgShown && filteredSearchedImages.length && (
+            <FullImg activeImg={filteredSearchedImages[activeImgIndex]} />
+          )}
+        </MainSlider>
+      </MainModal>
     </div>
   );
 };

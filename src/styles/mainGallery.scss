@@ -19,18 +19,23 @@
 .main-gallery__item {
   width: 100%;
   max-height: 250px;
-}
-
-.main-gallery__picture {
-  width: 100%;
-  max-height: 250px;
   cursor: pointer;
 
   &:hover {
     .main-gallery__image {
       transform: scale(1.05);
     }
+
+    .main-gallery__item-title {
+      @include default-transition;
+      color: $color-red;
+    }
   }
+}
+
+.main-gallery__picture {
+  width: 100%;
+  max-height: 250px;
 }
 
 .main-gallery__image {
@@ -42,7 +47,7 @@
 }
 
 .main-gallery__item-title {
-  margin-top: 5px;
+  padding-top: 5px;
   color: $color-white;
   text-transform: uppercase;
 }

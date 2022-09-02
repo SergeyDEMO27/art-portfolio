@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { IGalleryImg } from "../types/types";
 import "../styles/mainGallery.scss";
 
@@ -15,15 +16,11 @@ const MainGallery: React.FC<MainGalleryProps> = ({
 }) => {
   return (
     <section className='main-gallery'>
-      <ul className='main-gallery__list'>
-        {images.length &&
-          images.map((image) => {
-            return (
-              <li
-                onClick={() => showImg(image)}
-                key={image.title}
-                className='main-gallery__item'
-              >
+      <TransitionGroup className='main-gallery__list' component='ul'>
+        {images.map((image) => {
+          return (
+            <CSSTransition key={image.title} timeout={200} classNames='alert'>
+              <li onClick={() => showImg(image)} className='main-gallery__item'>
                 <picture className='main-gallery__picture'>
                   <img
                     className='main-gallery__image'
@@ -32,12 +29,15 @@ const MainGallery: React.FC<MainGalleryProps> = ({
                   />
                 </picture>
                 {isFilter && (
-                  <div className='main-gallery__item-title'>{image.title}</div>
+                  <div className='main-gallery__item-title'>
+                    {image.title}--{image.type}--{`${image.price}$`}
+                  </div>
                 )}
               </li>
-            );
-          })}
-      </ul>
+            </CSSTransition>
+          );
+        })}
+      </TransitionGroup>
     </section>
   );
 };

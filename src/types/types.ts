@@ -8,6 +8,7 @@ export interface IGalleryImg {
   title: string;
   path: string;
   type: string;
+  price: number;
 }
 
 export interface ISelectOpt {
